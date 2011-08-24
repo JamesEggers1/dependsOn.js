@@ -9,9 +9,16 @@ Not having the proper dependencies loaded can yield a number of TypeErrors if a 
 ============================================
 (function($, window){
 	var MyObj = function(config){
-		dependsOn("myNamespace"); 						// should always be true because of the extend lines below.
-		dependsOn("myOtherObject", window.myNamespace); // will throw an error if window.myNamespace.myOtherObject isn't defined.
-		dependsOn("property1", config); 				// errors if there is no config.property1
+	
+		// should always be true because of the extend lines below.
+		dependsOn("myNamespace");
+		
+		// will throw an error if window.myNamespace.myOtherObject isn't defined.
+		dependsOn("myOtherObject", window.myNamespace);
+		
+		// errors if there is no config.property1
+		dependsOn("property1", config);
+		
 		...
 	};
 	
