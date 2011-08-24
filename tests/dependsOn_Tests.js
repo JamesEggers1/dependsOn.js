@@ -36,8 +36,11 @@ fixture.prototype["test that the dependency exists for a provided object. (happy
 
 fixture.prototype["test that an error is thrown if the dependency does not exist for a provided object. (sad path)"] = function(){
 	var config = { property1: "test"};
+	var test = function(){
+		dependsOn("property2", config);
+	};
 	
-	assertException("The config should be missing a property2 member.", dependsOn("property2", config), "ReferenceError");
+	assertException("The config should be missing a property2 member.", test, "ReferenceError");
 }
 
 fixture.prototype["test that the dependency exists using default scope. (happy path)"] = function(){
@@ -46,8 +49,9 @@ fixture.prototype["test that the dependency exists using default scope. (happy p
 	assertTrue("The default scope should contain a property1 member.", dependsOn("property1"));
 }
 
-
-// TODO: Make this test pass.
-fixture.prototype["test that an error is thrown if the dependency does not exist for a provided object. (sad path)"] = function(){
-	assertException("The default scope should be missing a property2 member.", dependsOn("property2"), "ReferenceError");
+fixture.prototype["test that an error is thrown if the dependency does not exist using default scope. (sad path)"] = function(){
+	var test = function(){
+		dependsOn("property2");
+	};
+	assertException("The default scope should be missing a property2 member.", test, "ReferenceError");
 }

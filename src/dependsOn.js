@@ -24,7 +24,7 @@ var dependsOn = function(name, scope){
 	scope = scope || window;
 	
 	if(!scope[name]){
-		throw new ReferenceError("'" + name + "' is a dependency for this module.");
+		throw new ReferenceError( "'" + name + "' is a dependency for this module.");
 	}
 	
 	return true;
