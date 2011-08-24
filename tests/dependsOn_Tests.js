@@ -21,32 +21,33 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-var fixture = new TestCase("Unit Tests for dependsOn");
+var fixture = new TestCase("In using dependsOn, ");
 
-fixture.prototype["test Verify the method is defined."] = function(){
-	assertNotUndefined("dependsOn should be defined if loaded.", window.dependsOn);
-	assertTypeOf("dependsOn should be defined as a function.", "function", window.dependsOn);
+fixture.prototype["test that the method is defined."] = function(){
+	assertNotUndefined("dependsOn should be defined if loaded.", dependsOn);
+	assertTypeOf("dependsOn should be defined as a function.", "function", dependsOn);
 }
 
-fixture.prototype["test Verify the dependency exists for a provided object. (happy path)"] = function(){
+fixture.prototype["test that the dependency exists for a provided object. (happy path)"] = function(){
 	var config = { property1: "test"};
 	
 	assertTrue("The config should contain a property1 member.", dependsOn("property1", config));
 }
 
-fixture.prototype["test Throw an error if the dependency does not exist for a provided object. (sad path)"] = function(){
+fixture.prototype["test that an error is thrown if the dependency does not exist for a provided object. (sad path)"] = function(){
 	var config = { property1: "test"};
 	
-	assertException("The config should be missing a property2 member.", dependsOn("property2", config), "TypeException"));
+	assertException("The config should be missing a property2 member.", dependsOn("property2", config), "ReferenceError");
 }
 
-fixture.prototype["test Verify the dependency exists using default scope. (happy path)"] = function(){
-	window.prototype.property1 =  "test";
+fixture.prototype["test that the dependency exists using default scope. (happy path)"] = function(){
+	window.property1 =  "test";
 	
-	assertTrue("The config should contain a property1 member.", dependsOn("property1"));
+	assertTrue("The default scope should contain a property1 member.", dependsOn("property1"));
 }
 
-fixture.prototype["test Throw an error if the dependency does not exist for a provided object. (sad path)"] = function(){
-	
-	assertException("The config should be missing a property2 member.", dependsOn("property2"), "TypeException"));
+
+// TODO: Make this test pass.
+fixture.prototype["test that an error is thrown if the dependency does not exist for a provided object. (sad path)"] = function(){
+	assertException("The default scope should be missing a property2 member.", dependsOn("property2"), "ReferenceError");
 }
