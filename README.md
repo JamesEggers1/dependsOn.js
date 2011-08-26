@@ -29,9 +29,9 @@ Not having the proper dependencies loaded can yield a number of TypeErrors if a 
 
 ## Overview
 
-	- dependsOn extends the global window object's prototype to provide the functionality.
-	- it accepts a name string of what you're looking for as the first parameter.
-	- an optional second parameter is provided to define what scope/object you're looking in. If not provided, window will be used.
+- dependsOn extends the global window object's prototype to provide the functionality.
+- it accepts a name string of what you're looking for as the first parameter.
+- an optional second parameter is provided to define what scope/object you're looking in. If not provided, window will be used.
 
 ## License (MIT)
 
