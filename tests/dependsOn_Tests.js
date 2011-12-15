@@ -26,13 +26,13 @@ var fixture = new TestCase("In using dependsOn, ");
 fixture.prototype["test that the method is defined."] = function(){
 	assertNotUndefined("dependsOn should be defined if loaded.", dependsOn);
 	assertTypeOf("dependsOn should be defined as a function.", "function", dependsOn);
-}
+};
 
 fixture.prototype["test that the dependency exists for a provided object. (happy path)"] = function(){
 	var config = { property1: "test"};
 	
 	assertTrue("The config should contain a property1 member.", dependsOn("property1", config));
-}
+};
 
 fixture.prototype["test that an error is thrown if the dependency does not exist for a provided object. (sad path)"] = function(){
 	var config = { property1: "test"};
@@ -41,17 +41,17 @@ fixture.prototype["test that an error is thrown if the dependency does not exist
 	};
 	
 	assertException("The config should be missing a property2 member.", test, "ReferenceError");
-}
+};
 
 fixture.prototype["test that the dependency exists using default scope. (happy path)"] = function(){
 	window.property1 =  "test";
 	
 	assertTrue("The default scope should contain a property1 member.", dependsOn("property1"));
-}
+};
 
 fixture.prototype["test that an error is thrown if the dependency does not exist using default scope. (sad path)"] = function(){
 	var test = function(){
 		dependsOn("property2");
 	};
 	assertException("The default scope should be missing a property2 member.", test, "ReferenceError");
-}
+};
